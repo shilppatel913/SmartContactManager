@@ -1,3 +1,6 @@
+body{
+	background:#e2e2e2 !important;
+}
 .bg-primary{
 	background:#009688 !important;
 }
@@ -8,4 +11,8 @@
 	width:100%;
 	height:93vh;
 	color:white;
+}
+.my-card{
+	background:#FFFFFF;
+	padding:20px;
 }

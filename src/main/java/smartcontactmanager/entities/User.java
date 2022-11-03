@@ -20,28 +20,47 @@ public class User {
 	@Column(name = "uid")
 	private int id;
 	@Column(name = "uname")
-	private String name;
+	private String uname;
 	@Column(name = "uemail")
-	private String email;
+	private String uemail;
 	@Column(name = "upassword")
-	private String password;
+	private String upassword;
 	@Column(name = "udesc")
-	private String desc;
+	private String udesc;
 	@Column(name = "uimgurl")
 	private String imageURL;
 	@Column(name = "urole")
-	private String role;
+	private String urole;
 	@Column(name = "uenabled")
-	private boolean enabled;
-	
-	//let us define the mapping from user to contact , a user may have many contacts
-	//now as we have created list of contacts a seperate table will be created named user_contacts(user_id,contact_id)
-	//but we dont want that we just want to have user_id as a foreign key in the contact table
-	//hence we can use mappedBy property to do so in the below mapping
-	//we use cascade all  so that when user is created and contact is mapped to it
-	
+	private boolean uenabled;
+
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
 	private List<Contact> contact=new ArrayList<>();
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", uname=" + uname + ", uemail=" + uemail + ", upassword=" + upassword + ", udesc="
+				+ udesc + ", imageURL=" + imageURL + ", urole=" + urole + ", uenabled=" + uenabled + ", contact="
+				+ contact + "]";
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int id, String uname, String uemail, String upassword, String udesc, String imageURL, String urole,
+			boolean uenabled, List<Contact> contact) {
+		super();
+		this.id = id;
+		this.uname = uname;
+		this.uemail = uemail;
+		this.upassword = upassword;
+		this.udesc = udesc;
+		this.imageURL = imageURL;
+		this.urole = urole;
+		this.uenabled = uenabled;
+		this.contact = contact;
+	}
 
 	public int getId() {
 		return id;
@@ -51,36 +70,36 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUname() {
+		return uname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUemail() {
+		return uemail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUpassword() {
+		return upassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUpassword(String upassword) {
+		this.upassword = upassword;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getUdesc() {
+		return udesc;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setUdesc(String udesc) {
+		this.udesc = udesc;
 	}
 
 	public String getImageURL() {
@@ -91,20 +110,20 @@ public class User {
 		this.imageURL = imageURL;
 	}
 
-	public String getRole() {
-		return role;
+	public String getUrole() {
+		return urole;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setUrole(String urole) {
+		this.urole = urole;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isUenabled() {
+		return uenabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setUenabled(boolean uenabled) {
+		this.uenabled = uenabled;
 	}
 
 	public List<Contact> getContact() {
@@ -115,30 +134,15 @@ public class User {
 		this.contact = contact;
 	}
 
-	public User(int id, String name, String email, String password, String desc, String imageURL, String role,
-			boolean enabled, List<Contact> contact) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.desc = desc;
-		this.imageURL = imageURL;
-		this.role = role;
-		this.enabled = enabled;
-		this.contact = contact;
-	}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	//let us define the mapping from user to contact , a user may have many contacts
+	//now as we have created list of contacts a seperate table will be created named user_contacts(user_id,contact_id)
+	//but we dont want that we just want to have user_id as a foreign key in the contact table
+	//hence we can use mappedBy property to do so in the below mapping
+	//we use cascade all  so that when user is created and contact is mapped to it
+	
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", desc=" + desc
-				+ ", imageURL=" + imageURL + ", role=" + role + ", enabled=" + enabled + ", contact=" + contact + "]";
-	}
 	
 	
 }

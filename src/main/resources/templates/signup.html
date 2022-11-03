@@ -5,8 +5,79 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<section class="banner d-flex justify-content-center align-items-center">
-		This is the signup page
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card mt-3">
+					<div th:if="${session.message}" 
+						th:classappend="${session.message.type}"
+					class="alert" role="alert">
+  							<p th:text="${session.message.content}"></p>
+  							
+  							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						<div class="container text-center">
+							<img style="width:60px;" th:src="@{/images/registered.png}">
+						</div>
+						<h1 class="text-center">Register Here</h1>
+						<form th:action="@{/do_signup}" method="post" th:object="${user}">
+						
+							<div class="form-group">
+		   					<label for="uname">Name</label>
+		   					 <input  name="uname" type="text" 
+		   					 class="form-control" 
+		   					 id="uname" 
+		   					 aria-describedby="emailHelp" 
+		   					 placeholder="Enter name" required>
+		 					 </div>
+		 					 
+							<div class="form-group">
+		   					<label for="uemail">Email</label>
+		   					 <input name="uemail" type="email" 
+		   					 class="form-control" 
+		   					 id="uemail" 
+		   					 aria-describedby="emailHelp" 
+		   					 placeholder="Enter email" required>
+		 					 </div>
+		 					 
+							<div class="form-group">
+		   					<label for="upassword">Password</label>
+		   					 <input  name="upassword" type="password" 
+		   					 class="form-control" 
+		   					 id="upassword" 
+		   					 aria-describedby="emailHelp" 
+		   					 placeholder="Enter password" required>
+		 					 </div>
+		 					 
+		 					 <div class="form-group">
+    						<label for="udesc">Bio</label>
+    						<textarea  name="udesc" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+  							</div>
+  							
+  							
+  							<div class="form-group form-check">
+		   					 <input name="uagreed" type="checkbox" 
+		   					 class="form-check-input" 
+		   					 id="uagreed" 
+		   					 aria-describedby="emailHelp" 
+		   					  required>
+		   					  <label for="uagreed">Agree to the terms</label>
+		 					 </div>
+		 					 
+  							
+  							<div class="container text-center">
+  								<button  class="btn bg-primary" type="submit">Submit</button>
+  								<button type="reset" class="btn" style="background:#f44336;" >Reset</button>
+  								
+  							</div>
+							
+						</form>
+					</div>
+				
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
 </html>
