@@ -27,9 +27,14 @@
 		   					<label for="uname">Name</label>
 		   					 <input  name="uname" type="text" 
 		   					 class="form-control" 
+		   					 th:value="${user.uname}"
+		   					 th:classappend="${#fields.hasErrors('uname')?'is-invalid':''}"
 		   					 id="uname" 
 		   					 aria-describedby="emailHelp" 
-		   					 placeholder="Enter name" required>
+		   					 placeholder="Enter name">
+		   					  <div id="uname" class="invalid-feedback" th:each="e:${#fields.errors('uname')}">
+      							<p th:text="${e}"></p>
+      						</div>
 		 					 </div>
 		 					 
 							<div class="form-group">

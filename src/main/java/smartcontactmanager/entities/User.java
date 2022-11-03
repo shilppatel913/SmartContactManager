@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
@@ -19,6 +21,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "uid")
 	private int id;
+	@NotBlank(message = "The Name field cannot be empty")
+	@Size(min=3,max=20,message="The characters should be between 3 and 20")
 	@Column(name = "uname")
 	private String uname;
 	@Column(name = "uemail")
