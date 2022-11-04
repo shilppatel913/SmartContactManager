@@ -8,7 +8,7 @@ public class SmartcontactmanagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmartcontactmanagerApplication.class, args);
-		System.out.println("application has started running");
+		System.out.println("application has started running"); 
 	}
 
 }
