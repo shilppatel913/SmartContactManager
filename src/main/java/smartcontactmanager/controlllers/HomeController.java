@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/home")
 	public String home() {
@@ -55,6 +59,7 @@ public class HomeController {
 			user.setUrole("ROLE_USER");
 			user.setUenabled(true);
 			user.setImageURL("default");
+			user.setUpassword(passwordEncoder.encode(user.getUpassword()));
 			this.userRepo.save(user);
 			session.setAttribute("message",new Message("Successfully registered","alert-success"));
 			return "signup";
@@ -66,7 +71,7 @@ public class HomeController {
 		
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping("/signin")
 	public String login() {
 		return "login";
 	}
