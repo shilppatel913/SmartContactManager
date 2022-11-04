@@ -29,4 +29,56 @@ body{
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
 }
+.sidebar{
+	width:18%;
+	height:100%;
+	position:fixed;
+	background:white;
+	padding:45px;
+	position:fixed;
+	
+}
+.sidebar a{
+	display:block;
+	color:gray;
+	width:100%;
+	padding:5px;
+	text-decoration:none;
+}
+
+.sidebar a:hover{
+	background:#e2e2e2;
+}
+
+.sidebar .crossBar{
+	position:absolute;
+	top:0;
+	right:36px;
+	font-size:36px;
+	cursor:pointer;
+}
+
+.content{
+	margin-left:300px;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
