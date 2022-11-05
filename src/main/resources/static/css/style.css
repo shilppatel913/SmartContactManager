@@ -34,7 +34,7 @@ body{
 	height:100%;
 	position:fixed;
 	background:white;
-	padding:45px;
+	padding:70px;
 	position:fixed;
 	
 }
@@ -52,14 +52,15 @@ body{
 
 .sidebar .crossBar{
 	position:absolute;
-	top:0;
+	top:5;
 	right:36px;
 	font-size:36px;
 	cursor:pointer;
 }
 
 .content{
-	margin-left:300px;	
+	margin-left:300px;
+	padding:50px;	
 }
 
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/basic::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-2">
+			<div class="card-body">
+				<h1 class="text-center">Add Contact</h1>
+				<div class="container-fluid mt-2">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+						
+							<form th:action="@{/user/process_contact}"
+								enctype="multipart/form-data"
+								method="post"
+								class="mt-2"
+							>
+							
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa fa-plus"></i>
+									</div>
+								
+								</div>
+								<input type="text" name="cname" placeholder="Enter name"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fas fa-user-alt"></i>
+									</div>
+								
+								</div>
+								<input type="text" name="cnickname" placeholder="Enter nickname"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa fa-phone"></i>
+									</div>
+								
+								</div>
+								<input type="number" name="cphone" placeholder="Enter number"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										@
+									</div>
+								
+								</div>
+								<input type="email" name="cemail" placeholder="Enter email"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa-solid fa-briefcase"></i>
+									</div>
+								
+								</div>
+								<input type="text" name="cwork" placeholder="Enter work"
+								class="form-control">	
+							</div>
+							
+							
+							
+							<div class="form-group mt-3">
+								<textarea class="form-control" placeholder="Enter description"
+								name="cdescription" rows="10" id="cdescription"></textarea>
+							</div>
+							
+							<div class="custom-file">
+								<input type="file" name="profileImage" />
+							</div>
+							
+							<div class="container text-center">
+								<button type="submit" class="btn btn-outline-primary">Save</button>
+							</div>
+							
+							</form>
+						
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		
+		</div>
+	</section>
+</body>
+</html>

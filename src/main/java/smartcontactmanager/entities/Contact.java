@@ -14,88 +14,88 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cid")
-	private int id;
+	private int cid;
 	@Column(name = "cname")
-	private String name;
+	private String cname;
 	@Column(name = "cnickname")
-	private String nickname;
+	private String cnickname;
 	@Column(name = "cwork")
-	private String work;
+	private String cwork;
 	@Column(name = "cemail")
-	private String email;
+	private String cemail;
 	@Column(name = "cimgurl")
-	private String imgURL;
+	private String cimgURL;
 	@Column(name = "cdescription")
-	private String description;
+	private String cdescription;
 	@Column(name = "cphone")
-	private String phone;
+	private String cphone;
 	
 	//here we will map a contact to only one user hence user_id will be foreign key here
 	@ManyToOne
 	private User user;
 
-	public int getId() {
-		return id;
+	public int getCid() {
+		return cid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCid(int cid) {
+		this.cid = cid;
 	}
 
-	public String getName() {
-		return name;
+	public String getCname() {
+		return cname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getCnickname() {
+		return cnickname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setCnickname(String cnickname) {
+		this.cnickname = cnickname;
 	}
 
-	public String getWork() {
-		return work;
+	public String getCwork() {
+		return cwork;
 	}
 
-	public void setWork(String work) {
-		this.work = work;
+	public void setCwork(String cwork) {
+		this.cwork = cwork;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCemail() {
+		return cemail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCemail(String cemail) {
+		this.cemail = cemail;
 	}
 
-	public String getImgURL() {
-		return imgURL;
+	public String getCimgURL() {
+		return cimgURL;
 	}
 
-	public void setImgURL(String imgURL) {
-		this.imgURL = imgURL;
+	public void setCimgURL(String cimgURL) {
+		this.cimgURL = cimgURL;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getCdescription() {
+		return cdescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCdescription(String cdescription) {
+		this.cdescription = cdescription;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getCphone() {
+		return cphone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCphone(String cphone) {
+		this.cphone = cphone;
 	}
 
 	public User getUser() {
@@ -106,17 +106,17 @@ public class Contact {
 		this.user = user;
 	}
 
-	public Contact(int id, String name, String nickname, String work, String email, String imgURL, String description,
-			String phone, User user) {
+	public Contact(int cid, String cname, String cnickname, String cwork, String cemail, String cimgURL,
+			String cdescription, String cphone, User user) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.nickname = nickname;
-		this.work = work;
-		this.email = email;
-		this.imgURL = imgURL;
-		this.description = description;
-		this.phone = phone;
+		this.cid = cid;
+		this.cname = cname;
+		this.cnickname = cnickname;
+		this.cwork = cwork;
+		this.cemail = cemail;
+		this.cimgURL = cimgURL;
+		this.cdescription = cdescription;
+		this.cphone = cphone;
 		this.user = user;
 	}
 
@@ -127,9 +127,11 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", name=" + name + ", nickname=" + nickname + ", work=" + work + ", email=" + email
-				+ ", imgURL=" + imgURL + ", description=" + description + ", phone=" + phone + ", user=" + user + "]";
+		return "Contact [cid=" + cid + ", cname=" + cname + ", cnickname=" + cnickname + ", cwork=" + cwork
+				+ ", cemail=" + cemail + ", cimgURL=" + cimgURL + ", cdescription=" + cdescription + ", cphone="
+				+ cphone + ", user=" + user + "]";
 	}
+
 	
 	
 }
