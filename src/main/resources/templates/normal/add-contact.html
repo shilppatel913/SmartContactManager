@@ -48,7 +48,7 @@
 									</div>
 								
 								</div>
-								<input type="number" name="cphone" placeholder="Enter number"
+								<input min="10" max="10" type="number" name="cphone" placeholder="Enter number"
 								class="form-control" required>	
 							</div>
 							
@@ -60,7 +60,7 @@
 								
 								</div>
 								<input type="email" name="cemail" placeholder="Enter email"
-								class="form-control">	
+								class="form-control" required>	
 							</div>
 							
 							<div class="input-group mt-3">
@@ -82,10 +82,14 @@
 							</div>
 							
 							<div class="custom-file">
-								<input type="file" name="profileImage"  required/>
+								<input type="file" name="profileImage" onchange="preview(event)" required/>
+								<div class="image-preview-container" id="image-preview-container">
+    							<div style="background:red;" class="preview">
+       							 <img id="preview-selected-image" />
+    							</div>
 							</div>
 							
-							<div class="container text-center">
+							<div class="container text-center mt-2">
 								<button type="submit" class="btn btn-outline-primary">Save</button>
 							</div>
 							
@@ -99,6 +103,12 @@
 			</div>
 		
 		</div>
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      	tinymce.init({
+        selector: '#cdescription'
+      });
+    </script>
 	</section>
 </body>
 </html>

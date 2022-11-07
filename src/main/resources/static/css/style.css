@@ -64,7 +64,23 @@ body{
 }
 
 
+.image-preview-container {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    border-radius: 20px;
+    display:none;
+}
 
+.image-preview-container img {
+    width: 100%;
+    display: none;
+    margin-bottom: 30px;
+}
+.image-preview-container input {
+    display: none;
+}
 
 
 

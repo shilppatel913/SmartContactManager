@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import smartcontactmanager.dao.ContactRepo;
 import smartcontactmanager.dao.UserRepo;
 import smartcontactmanager.entities.Contact;
 import smartcontactmanager.entities.User;
@@ -30,6 +32,9 @@ import smartcontactmanager.helper.Message;
 public class UserController {
 		@Autowired
 		private UserRepo userRepo;
+		
+		@Autowired
+		private ContactRepo contactRepo;
 		
 		//making a common method as we will need the user object for all the routes below
 		@ModelAttribute
@@ -85,5 +90,23 @@ public class UserController {
 				session.setAttribute("message", new Message("Something went wrong","alert-danger"));
 			}
 			return "normal/add-contact";
+		}
+		
+		//handler to view all the contacts
+		@RequestMapping("/show-contacts")
+		public String viewContact(Model model,Principal principal) {
+			//how can we fetch all the  contacts of the user who is logged in
+			//this is one way we can get all the contacts
+			//but since we have to use pagination we will be making a seperate rep for contact
+			
+			/**String username=principal.getName();
+			User user=this.userRepo.getUserbyuserName(username);
+			List<Contact> contacts=user.getContact(); **/
+			
+			String username=principal.getName();
+			User user=this.userRepo.getUserbyuserName(username);
+			List<Contact> contacts=this.contactRepo.getContactsByUser(user.getId());
+			model.addAttribute("contacts",contacts);
+			return "normal/contactview";
 		}
 }
