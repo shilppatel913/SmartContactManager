@@ -30,3 +30,7 @@ The moment you add this dependency into your project all of the endpoints would 
  2. loginProcessingUrl() - URL where your data (username and password) will be sent.
  3. defaultSuccessfulUrl() - The landing page after successful login
  4.failureUrl() - The landing page after unsuccessful login.
+ 
+ 
+ **Rich Text Editor**
+ You can use the **tiny MCE API** to integrate the rich text editor into your application. Just go into the documentation and add the script tag where you need the rich text editor. Also include id of the textarea to add the editor there.
