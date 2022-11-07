@@ -34,3 +34,7 @@ The moment you add this dependency into your project all of the endpoints would 
  
  **Rich Text Editor**
  You can use the **tiny MCE API** to integrate the rich text editor into your application. Just go into the documentation and add the script tag where you need the rich text editor. Also include id of the textarea to add the editor there.
+ 
+ 
+ **Pagination**
+To implement Pagination you have to use the Pageable interface. The constructor of this interface takes two arguments, first is the current page and second is the number of rows to be shown per page. You have to return the list of data as Page interface instead of List interface. 
