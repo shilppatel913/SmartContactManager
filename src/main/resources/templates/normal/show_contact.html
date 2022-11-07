@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/basic::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Contact show</title>
+</head>
+<body>
+	<section>
+		<div class="card">
+			<div class="card-body">
+				<div class="container text-center">
+					<img class="img-profile" th:src="@{'/images/'+${contact.cimgURL}}">
+				</div>
+				<div class="container mt-2">
+					<h1 class="text-center" th:text="${contact.cname}"></h1>
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">#ID</th>
+					      <th scope="col" th:text="'SCMUSER'+${contact.cid}"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">Email</th>
+					      <td th:text="${contact.cemail}"></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Phone</th>
+					      <td th:text="${contact.cphone}"></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Work</th>
+					     	<td th:text="${contact.cwork}"></td>
+					    </tr>
+					  </tbody>
+					</table>
+					<hr>
+				</div>
+				<div class="container text-center">
+					<button class="btn btn-primary">Edit</button>
+					<button class="btn btn-danger">Delete</button>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

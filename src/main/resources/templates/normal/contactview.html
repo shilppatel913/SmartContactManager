@@ -15,6 +15,7 @@
 						  <thead>
 						    <tr>
 						    <th scope="col">SNo</th>
+						    <th scope="col">Profile</th>
 						      <th scope="col">Name</th>
 						      <th scope="col">Email</th>
 						      <th scope="col">Phone</th>
@@ -24,8 +25,13 @@
 						  <tbody>
 						    <tr th:each="c:${contacts}">
 						      <th scope="row" th:text="${c.cid}"></th>
+						      <td>
+						    	<img class="my_profile_picture" th:src="@{'/images/'+${c.cimgURL}}">
+						    </td>
 						      <td th:text="${c.cname}"></td>
-						      <td th:text="${c.cemail}"></td>
+						      <td>
+						      	<a th:href="@{'/user/contact/'+${c.cid}}"><span th:text="${c.cemail}"></span></a>
+						      </td>
 						      <td th:text="${c.cphone}"></td>
 						      <td>
 						      	<button class="btn btn-danger">Delete</button>

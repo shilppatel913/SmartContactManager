@@ -82,8 +82,17 @@ body{
     display: none;
 }
 
-
-
+.my_profile_picture{
+	width:30px;
+	height:30px;
+	object-fit:cover;
+	border-radius:10px;
+}
+.img-profile{
+	width:200px;
+	height:200px;
+	border-radius:70px;
+}
 
 
 
