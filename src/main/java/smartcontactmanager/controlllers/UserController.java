@@ -12,9 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,8 +97,8 @@ public class UserController {
 		}
 		
 		//handler to view all the contacts
-		@RequestMapping("/show-contacts")
-		public String viewContact(Model model,Principal principal) {
+		@RequestMapping("/show-contacts/{page}")
+		public String viewContact(@PathVariable("page") int currpage,Model model,Principal principal) {
 			//how can we fetch all the  contacts of the user who is logged in
 			//this is one way we can get all the contacts
 			//but since we have to use pagination we will be making a seperate rep for contact
@@ -105,8 +109,11 @@ public class UserController {
 			
 			String username=principal.getName();
 			User user=this.userRepo.getUserbyuserName(username);
-			List<Contact> contacts=this.contactRepo.getContactsByUser(user.getId());
+		Pageable pageable=PageRequest.of(currpage, 3);
+			Page<Contact> contacts=this.contactRepo.getContactsByUser(user.getId(),pageable);
 			model.addAttribute("contacts",contacts);
+			model.addAttribute("currPage",currpage);
+			model.addAttribute("totalPages",contacts.getTotalPages());
 			return "normal/contactview";
 		}
 }
