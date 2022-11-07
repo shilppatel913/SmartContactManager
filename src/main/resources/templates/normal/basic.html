@@ -52,6 +52,12 @@
    </div>
    <div  class="content">
    <i onclick="toggleBar()" style="cursor:pointer;" class="fas fa-bars mt-3"></i>
+   			<div th:if="${session.message}" class="container">
+  			 <div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+  				<span th:text="${session.message.content}"></span>
+			</div>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
    	<div th:replace="${content}"></div>
    </div>
 
