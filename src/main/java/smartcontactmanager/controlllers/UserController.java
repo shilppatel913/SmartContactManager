@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -120,14 +121,94 @@ public class UserController {
 		
 		//to view a particular contact by id
 		@RequestMapping("/contact/{cId}")
-		public String showContact(@PathVariable("cId") int cId,Model model) {
+		public String showContact(@PathVariable("cId") int cId,Model model,Principal principal) {
 			//get data of that particular contact
 			Optional<Contact> op=this.contactRepo.findById(cId);
 			Contact contact=op.get();
-			model.addAttribute("contact",contact);
+			
+			//we need to apply a security so that the logged in user can only his contacts
+			// and cannot see anybody else's contact by tampering with the URL
+			String username=principal.getName();
+			User user=this.userRepo.getUserbyuserName(username);
+			if(user.getId()==contact.getUser().getId()) {
+				model.addAttribute("contact",contact);
+			}
+			
+			
 			return "normal/show_contact";
 		}
 		
+		//handle to delete a particular contact
+		@RequestMapping("/delete/{cId}")
+		public String contactDelete(@PathVariable("cId") int cId,HttpSession session) {
+			try {
+				Optional<Contact> op=this.contactRepo.findById(cId);
+				Contact contact=op.get();
+				contact.setUser(null);
+				this.contactRepo.delete(contact);
+				System.out.println("Your contact has been deleted successfully");
+				session.setAttribute("message", new Message("The contact has been deleted successfully","alert-success"));
+			}catch(Exception e) {
+				session.setAttribute("message", new Message("Could not delete contact","alert-danger"));
+			}
+			
+			
+			return "redirect:/user/show-contacts/0";
+		}
+		//handler to show the update form
+		/** we will be using post mapping to just show the form because of security reasons
+		 * If we use GetMapping anybody can use trial and errror to update a contact
+		 */
 		
+		@PostMapping("/update/{cId}")
+		public String formShow(@PathVariable("cId") int cId,Model model) {
+			Contact contact=this.contactRepo.findById(cId).get();
+			System.out.println(contact);
+			model.addAttribute("contact",contact);
+			return "normal/updateForm";
+		}
 		
+		//to handle all the details added in the update and update the data in the database
+		@PostMapping("/process_update")
+		public String handleUpdate(@ModelAttribute Contact contact,
+				@RequestParam("updateImage") MultipartFile file,HttpSession session) {
+			
+			try {
+				
+				Contact oldcontact=this.contactRepo.findById(contact.getCid()).get();
+				if(!file.isEmpty()) {
+					
+					//delete the old file
+//					File deleteObj=new ClassPathResource("static/images").getFile();
+//					File temp=new File(deleteObj,oldcontact.getCimgURL());
+//					temp.delete();
+					
+					//overwrite the new file
+					File fileobj=new ClassPathResource("static/images").getFile();
+					Path path=Paths.get(fileobj.getAbsolutePath()+File.separator+file.getOriginalFilename());
+					
+					Files.copy(file.getInputStream(), path,StandardCopyOption.REPLACE_EXISTING);
+					contact.setCimgURL(file.getOriginalFilename());
+					System.out.println(file.getOriginalFilename());
+					
+					
+				}else {
+					//if file empty set the old profile picture only
+					contact.setCimgURL(oldcontact.getCimgURL());
+				}
+				//save the update contact but before set the user again for that contact
+				//or it will get unlinked
+				contact.setUser(oldcontact.getUser());
+				this.contactRepo.save(contact);
+				session.setAttribute("message",new Message("The data has been updated successfully","alert-success"));
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println(file.getOriginalFilename());
+				session.setAttribute("message",new Message("The data could not be updated","alert-danger"));
+			}
+			
+			
+			return "redirect:/user/contact/"+contact.getCid();
+		}
 }

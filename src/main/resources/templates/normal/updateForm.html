@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/basic::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-2">
+			<div class="card-body">
+				<h1 class="text-center">Update Contact</h1>
+				<div class="container-fluid mt-2">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+						
+							<form th:action="@{/user/process_update}" 
+								th:object="${contact}"
+								enctype="multipart/form-data"
+								method="post"
+								class="mt-2"
+							>
+							<input type="hidden" name="cid" th:value="${contact.cid}" />
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa fa-plus"></i>
+									</div>
+								
+								</div>
+								<input th:value="${contact.cname}" type="text" name="cname" placeholder="Enter name"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fas fa-user-alt"></i>
+									</div>
+								
+								</div>
+								<input th:value="${contact.cnickname}" type="text" name="cnickname" placeholder="Enter nickname"
+								class="form-control">	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa fa-phone"></i>
+									</div>
+								
+								</div>
+								<input th:value="${contact.cphone}" type="number" name="cphone" placeholder="Enter number"
+								class="form-control" >	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										@
+									</div>
+								
+								</div>
+								<input th:value="${contact.cemail}" type="email" name="cemail" placeholder="Enter email"
+								class="form-control" >	
+							</div>
+							
+							<div class="input-group mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text mr-3">
+										<i class="fa-solid fa-briefcase"></i>
+									</div>
+								
+								</div>
+								<input th:value="${contact.cwork}" type="text" name="cwork" placeholder="Enter work"
+								class="form-control">	
+							</div>
+							
+							
+							
+							<div class="form-group mt-3">
+								<textarea th:text="${contact.cdescription}" class="form-control" placeholder="Enter description"
+								name="cdescription" rows="10" id="cdescription"></textarea>
+							</div>
+							
+							<div class="custom-file">
+								<label>Choose new Picture</label>
+								<input type="file" name="updateImage" onchange="preview(event)"/>
+								<div class="image-preview-container" id="image-preview-container">
+    							<div style="background:red;" class="preview">
+       							 <img id="preview-selected-image" />
+    							</div>
+							</div>
+							
+							<div class="container text-center mt-2">
+								<button type="submit" class="btn btn-outline-primary">Update</button>
+							</div>
+							
+							</form>
+						
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		
+		</div>
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      	tinymce.init({
+        selector: '#cdescription'
+      });
+    </script>
+	</section>
+</body>
+</html>

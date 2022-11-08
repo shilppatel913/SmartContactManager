@@ -6,8 +6,14 @@
 </head>
 <body>
 	<section>
-		<div class="card">
+		<div class="card" th:if="${contact}">
 			<div class="card-body">
+			<div th:if="${session.message}" class="container">
+  			 <div th:classappend="${session.message.type}" class="alert text-center" role="alert">
+  				<span th:text="${session.message.content}"></span>
+			</div>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
 				<div class="container text-center">
 					<img class="img-profile" th:src="@{'/images/'+${contact.cimgURL}}">
 				</div>
@@ -38,11 +44,13 @@
 					<hr>
 				</div>
 				<div class="container text-center">
-					<button class="btn btn-primary">Edit</button>
-					<button class="btn btn-danger">Delete</button>
+					<a href="#" th:onclick="|deleteAlert(${contact.cid})|"><button class="btn btn-danger">Delete</button></a>
+						    		<form  method="post" th:action="@{'/user/update/'+${contact.cid}}">
+						      		<button type="submit" class="btn btn-primary">Update</button></form>
 				</div>
 			</div>
 		</div>
+		<h1 th:unless="${contact}">You dont have permission to see this contact</h1>
 	</section>
 </body>
 </html>
