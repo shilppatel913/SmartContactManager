@@ -51,3 +51,54 @@ The moment you add this dependency into your project all of the endpoints would 
  
  **Pagination**
 To implement Pagination you have to use the Pageable interface. The constructor of this interface takes two arguments, first is the current page and second is the number of rows to be shown per page. You have to return the list of data as Page interface instead of List interface. 
+
+
+
+**Java Mail API Components**
+We will be using the Java Mail API to send emails from our java code.
+
+Interfaces and classes to be used.
+
+1.java.util.Properties
+
+We will be using the System.getProperties() method to access the properties
+of your system and configuring other custom properties
+
+2. javax.mail.Message
+
+This class models an email message.To send a message,subclass of Message is 
+instantiated, the attributes and contents are filled in and message is sent 
+using the Transport.send method.
+
+3.javax.mail.MessagingException
+
+This is base class for all exceptions thrown by the Messaging classes.
+
+4.javax.mail.PasswordAuthentication
+
+This class is simply a repository for a username and a password.
+
+5.javax.mail.Session
+
+Session class represents a mail session
+
+6.javax.mail.Transport
+
+This is abstract class that models a message transport.
+
+7.javax.mail.internet.InternetAddress
+
+This class represents an Internet email address using the syntax of RFC822.
+
+8.javax.mail.internet.MimeMessage
+
+This class represents a MIME style email message.It implements the Message
+abstract class and MimePart interface.
+
+
+**Steps to be followed to send an email from java program**
+
+1.Get the Session
+2.Compose the message
+3.Send the message
+
