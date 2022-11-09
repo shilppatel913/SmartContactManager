@@ -211,4 +211,13 @@ public class UserController {
 			
 			return "redirect:/user/contact/"+contact.getCid();
 		}
+		
+		//handler for the user profile page
+		@RequestMapping("/profile")
+		public String handleProfile(Model model,Principal principal) {
+			String username=principal.getName();
+			User user=this.userRepo.getUserbyuserName(username);
+			model.addAttribute("user",user);
+			return "normal/profile";
+		}
 }

@@ -6,7 +6,23 @@
 </head>
 <body>
 	<section>
-		This is the user dashboard
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+					<div class="container text-center ">
+						<img style="height:200px; width:200px;" th:src="@{'/images/default_user.png'}">
+					</div>
+					<h1 class="text-center mt-3 text-secondary font-italic font-weight-light">
+						Start Adding your contact on cloud
+					</h1>
+					<div class="container text-center mt-3">
+					<i  class="fa-solid fa-phone"></i>
+					<a th:href="@{/user/add-contact}"><button class="btn btn-primary">Add Contact</button></a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
 	</section>
 </body>
 </html>

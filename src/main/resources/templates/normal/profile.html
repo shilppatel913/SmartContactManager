@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/basic::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="card">
+			<div class="card-body">
+				<div class="container text-center">
+					<img class="img-profile" th:src="@{'/images/default_user.png'}">
+				</div>
+				<div class="container mt-2">
+					<h1 class="text-center" th:text="${user.uname}"></h1>
+					<table class="table text-center">
+					  <thead>
+					    <tr>
+					      <th scope="col">#ID</th>
+					      <th scope="col" th:text="'SCMUSER'+${user.id}"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">Email</th>
+					      <td th:text="${user.uemail}"></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Bio</th>
+					      <td th:text="${user.udesc}"></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Role</th>
+					     	<td th:text="${user.urole}"></td>
+					    </tr>
+					  </tbody>
+					</table>
+			</div>
+		
+		</div>
+	</section>
+</body>
+</html>
