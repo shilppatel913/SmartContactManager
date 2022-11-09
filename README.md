@@ -9,6 +9,19 @@
 8. DevTools
 
 
+**Entities**
+1. User
+2. Contact
+
+**Relationship Defined**
+A user can have many contacts but a contact can belong to only one user.
+
+**ER Diagram**
+![ER diagram](https://user-images.githubusercontent.com/74822210/200813064-91017c6e-e251-4590-8725-4e2534ecbbf4.jpg)
+
+
+
+
 **Spring Security**
 The moment you add this dependency into your project all of the endpoints would be automatically secured and you'd be requiring a username and password to access all of them. The password is generated at runtime and will be shown on your console and username is user. Now you can customise everything to perform the necessary auth and to secure only some of the endpoints. To do that you need to follow the below steps.
 
