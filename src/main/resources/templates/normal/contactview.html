@@ -13,8 +13,20 @@
   				<span th:text="${session.message.content}"></span>
 			</div>
 				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				
+				
 			</div>
 				<h1 class="text-center">Your Contacts</h1>
+				<div class="search-container">
+				
+					<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search Your Contacts"/>
+					<div id="search-output"  class="search-output">
+				
+					</div>
+				
+				</div>
+				
+				
 				<div class="container mt-3">
 									<table class="table">
 						  <thead>
@@ -41,7 +53,7 @@
 						      <td>
 						    	<a href="#" th:onclick="|deleteAlert(${c.cid})|"><button class="btn btn-danger">Delete</button></a>
 						    		<form  method="post" th:action="@{'/user/update/'+${c.cid}}">
-						      		<button type="submit" class="btn btn-primary">Update</button></form>
+						      		<button type="submit" class="btn btn-primary mt-2">Update</button></form>
 						      </td>
 						    </tr>
 						  </tbody>

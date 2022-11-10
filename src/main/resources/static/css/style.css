@@ -93,7 +93,17 @@ body{
 	height:200px;
 	border-radius:70px;
 }
+.search-container{
+	position:relative;
+}
 
+.search-output{
+	position:absolute;
+	width:100%;
+	background:white;
+	border:1px solid gray;
+	display:none;
+}
 
 
 

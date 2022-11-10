@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import smartcontactmanager.entities.Contact;
+import smartcontactmanager.entities.User;
 
 public interface ContactRepo extends JpaRepository<Contact, Integer> {
 		
@@ -18,6 +19,9 @@ public interface ContactRepo extends JpaRepository<Contact, Integer> {
 	public Page<Contact> getContactsByUser(@Param("userId") int userId,Pageable pageable);
 	
 	
+	//let us make define a method for the search functionality
+	//It will search for all the contacts matching the name and only for the logged in user
+	public List<Contact> findByCnameContainingAndUser(String name,User user);
 	
 	
 	
