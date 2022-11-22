@@ -16,8 +16,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,10 @@ import smartcontactmanager.helper.Message;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+		@Autowired
+		private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 		@Autowired
 		private UserRepo userRepo;
 		
@@ -219,5 +225,31 @@ public class UserController {
 			User user=this.userRepo.getUserbyuserName(username);
 			model.addAttribute("user",user);
 			return "normal/profile";
+		}
+		
+		
+		//form for the settings page which will have the functionality of changing the password
+		@GetMapping("/settings")
+		public String settings() {
+			return "normal/settings";
+		}
+		
+		//let us process the password and if it is correct change it
+		@PostMapping("/process_password")
+		public String processPassword(@RequestParam("oldPassword") String oldPassword,
+				@RequestParam("newPassword") String newPassword,Principal principal,HttpSession session) {
+			
+			String username=principal.getName();
+			User user=this.userRepo.getUserbyuserName(username);
+			if(bCryptPasswordEncoder.matches(oldPassword, user.getUpassword())) {
+				user.setUpassword(bCryptPasswordEncoder.encode(newPassword));
+				this.userRepo.save(user);
+				session.setAttribute("message",new Message("The password has been updated successfully","alert-success"));
+				return "redirect:/user/dashboard";
+			}else {
+				session.setAttribute("message",new Message("Old password is incorrect","alert-danger"));
+				return "redirect:/user/settings";
+			}
+			
 		}
 }

@@ -28,6 +28,7 @@
 				
 				
 				<div class="container mt-3">
+					<div class="table-responsive">
 									<table class="table">
 						  <thead>
 						    <tr>
@@ -58,7 +59,7 @@
 						    </tr>
 						  </tbody>
 						</table>
-						
+						</div>
 						<!-- Applying pagination property -->
 						<nav aria-label="Page navigation example">
 					  <ul class="pagination">
@@ -68,10 +69,12 @@
 					        <span class="sr-only">Previous</span>
 					      </a>
 					    </li>
+					    
 					    <li  th:classappend="${currPage==p-1?'active':''}" 
 					    th:each="p:${#numbers.sequence(1,totalPages)}" 
 					    class="page-item">
 					    <a th:href="@{'/user/show-contacts/'+${p-1}}" class="page-link" href="#" th:text="${p}"></a></li>
+					    
 					    <li th:if="${currPage!=totalPages-1}" class="page-item">
 					      <a th:href="@{'/user/show-contacts/'+${currPage+1}}" class="page-link" href="#" aria-label="Next">
 					        <span aria-hidden="true">&raquo;</span>
@@ -83,6 +86,14 @@
 				</div>
 			</div>
 		</div>
+		<script>
+		$(document).ready(()=>{
+			$(".item").removeClass("active");
+			$("#contactview").addClass("active");
+			
+		})
+	</script>
 	</section>
 </body>
+
 </html>
