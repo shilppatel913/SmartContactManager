@@ -19,8 +19,20 @@
 					<i  class="fa-solid fa-phone"></i>
 					<a th:href="@{/user/add-contact}"><button class="btn btn-primary">Add Contact</button></a>
 					</div>
+					
+					<input class="form-control mt-3"
+			type="text" name="amount"
+			id="payment_amt"
+			placeholder="Enter your amount to donate"
+			 />
+			 
+			 <div class="container text-center">
+			 	<button onclick="generateOrder()" class="btn btn-warning mt-3">Pay Now</button>
+			 </div>
+					
 				</div>
 			</div>
+			
 			
 		</div>
 		<script>
